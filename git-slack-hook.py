@@ -39,6 +39,10 @@ Either in .git/config or repository (repository config overrides .git/config):
         Display name for the Slack message pusher.
         Default: 'GIT push'
 
+    'hooks.slack.repository-title'
+        Human readable name for the repository.
+        Default: use directory name.
+
     'hooks.slack.bot-icon'
         Slack icon for the message.
         Default: ':cherries:'
@@ -240,11 +244,13 @@ def post_slack(old, new, ref):
                 reponame=repo_name )
         commits.append(c)
 
+    repo_title = get_any_config('hooks.slack.repository-title') or repo_name
+
     content = {
         "channel": slack_channel,
         "username": slack_botname,
         "icon_emoji": slack_icon,
-        "text": "[%s / *%s*] %d commits" % (str(repo_name), str(ref).replace('refs/heads/',''), len(commits)),
+        "text": "[%s / *%s*] %d commits" % (str(repo_title), str(ref).replace('refs/heads/',''), len(commits)),
         "attachments": commits }
     
     r = requests.post(webhook_url, json=content)

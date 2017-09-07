@@ -35,6 +35,10 @@ These can be either in `.git/config` or repository (repository config overrides 
         master, for example, is: 'refs/heads/master'
         Default: '.*'
 
+    'hooks.slack.repository-title'
+        Human readable name for the repository.
+        Default: use directory name.
+
     'hooks.slack.bot-name'
         Display name for the Slack message pusher.
         Default: 'GIT push'
