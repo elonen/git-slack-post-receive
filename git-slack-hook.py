@@ -45,7 +45,7 @@ Either in .git/config or repository (repository config overrides .git/config):
 
     'hooks.slack.bot-icon'
         Slack icon for the message.
-        Default: ':cherries:'
+        Default: ':hash:'
 
     'hooks.slack.hide-merges'
         If '1', don't show merges.
@@ -208,7 +208,7 @@ def post_slack(old, new, ref):
         sys.exit(0)
 
     slack_botname = get_any_config('hooks.slack.bot-name') or "GIT push"
-    slack_icon = get_any_config('hooks.slack.bot-icon') or ":cherries:"
+    slack_icon = get_any_config('hooks.slack.bot-icon') or ":hash:"
 
     slack_channel = get_any_config('hooks.slack.channel')
     if slack_channel is None:

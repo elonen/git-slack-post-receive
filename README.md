@@ -45,7 +45,7 @@ These can be either in `.git/config` or repository (repository config overrides 
 
     'hooks.slack.bot-icon'
         Slack icon for the message.
-        Default: ':cherries:'
+        Default: ':hash:'
 
     'hooks.slack.hide-merges'
         If '1', don't show merges.
