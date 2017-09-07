@@ -191,7 +191,7 @@ def post_slack(old, new, ref):
 
     webhook_url = get_git_config('hooks.slack.webhook-url')
     if webhook_url is None:
-        sys.stderr.write('SLACK HOOK ERROR: No webhook_url set. Aborting.\n')
+        sys.stderr.write('Slack hook: No webhook_url set.\n')
         sys.exit(0)
 
     branch_regex = get_any_config('hooks.slack.branch-regex') or '.*'
@@ -204,7 +204,7 @@ def post_slack(old, new, ref):
 
     slack_channel = get_any_config('hooks.slack.channel')
     if slack_channel is None:
-        sys.stderr.write('SLACK HOOK ERROR: No slack_channel set. Aborting.\n')
+        sys.stderr.write('Slack hook: No slack_channel set.\n')
         sys.exit(0)
 
     repo_name = get_repo_name()
@@ -249,7 +249,7 @@ def post_slack(old, new, ref):
     
     r = requests.post(webhook_url, json=content)
     if r.status_code != 200:
-        sys.stderr.write('SLACK HOOK ERROR: HTTP error status %s: %s' %(str(r.status_code), str(r.text)))
+        sys.stderr.write('Slack hook: HTTP error status %s: %s' %(str(r.status_code), str(r.text)))
         sys.exit(2)
 
 
