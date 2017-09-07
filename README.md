@@ -4,8 +4,9 @@ Git post-receive hook for Slack in Python 3. Configurable in .git/config AND a c
 ## Usage
 ### Installation & Configuration
 
-Install `git-slack-hook.py` to your repository's `.git/hooks` directory and call it `post-receive`.
-Set it executable with `chmod 755`.
+Install `git-slack-hook.py` to your repository's `.git/hooks` directory and
+rename it `post-receive` (or symlink `post-receive` ->
+`<repodir>/git-slack-hook.py`). Make sure it's executable (`chmod 755`).
 
 Your Python 3 setup will need to have the _python-dateutil_ library installed.
 
