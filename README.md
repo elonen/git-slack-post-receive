@@ -51,6 +51,9 @@ These can be either in `.git/config` or repository (repository config overrides 
         If '1', don't show merges.
         Default: '0'
 
+    'hooks.slack.strip-bare-git-extension'
+        If '1', remove ".git" when determining repository name (for use with commit-url).
+        Default: '1'
 
 Note that only two of the options are required: `hooks.slack.webhook-url` and `hooks.slack.channel`.
 

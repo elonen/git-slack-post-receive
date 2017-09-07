@@ -51,6 +51,10 @@ Either in .git/config or repository (repository config overrides .git/config):
         If '1', don't show merges.
         Default: '0'
 
+    'hooks.slack.strip-bare-git-extension'
+        If '1', remove ".git" when determining repository name (for use with commit-url).
+        Default: '1'
+
 '''
 
 EMAIL_RE = re.compile("^\"?(.*)\"? <(.*)>$")
@@ -102,7 +106,7 @@ def get_any_config(key, default=None):
 def get_repo_name():
     if get_git_config('core.bare', 'false') == 'true':
         name = os.path.basename(os.getcwd())
-        if name.endswith('.git'):
+        if name.endswith('.git') and get_any_config('hooks.slack.strip-bare-git-extension', '1') != '0':
             name = name[:-4]
         return name
     else:
